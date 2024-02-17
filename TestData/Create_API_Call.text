@@ -1,0 +1,25 @@
+(async function createStudent() {
+  let student = { "name": "Doulsab", "mobileNumber": "98658525632" };
+
+  try {
+    const response = await fetch('http://localhost:8085/create-student', {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        'Content-Type': "application/json",
+      },
+      body: JSON.stringify(student)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.text(); // Assuming the response is text, change to json() if it's JSON
+    console.log('Student creation successful:', result);
+    return result;
+  } catch (error) {
+    console.error('Error during student creation:', error);
+    throw error; // Re-throw the error for further handling
+  }
+})();

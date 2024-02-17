@@ -1,11 +1,15 @@
-package com.dd.student.project;
+package com.dd.student.project.model;
+
+import jakarta.validation.constraints.NotEmpty;
 
 public class Student {
-    private int id;
+    private Integer id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String mobileNumber;
 
-    public Student(int id, String name, String mobileNumber) {
+    public Student(Integer id, String name, String mobileNumber) {
         this.id = id;
         this.name = name;
         this.mobileNumber = mobileNumber;
@@ -14,24 +18,24 @@ public class Student {
     public Student() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
     public void setMobileNumber(String mobileNumber) {

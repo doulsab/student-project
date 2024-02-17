@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Submit Form</title>
+</head>
+<body>
+
+<h2>Submit Form</h2>
+
+<form id="studentForm">
+    <label for="name">Name:</label>
+    <input id="name" name="name" required type="text">
+
+    <label for="mobileNumber">Mobile Number:</label>
+    <input id="mobileNumber" maxlength="10" name="mobileNumber" required type="text">
+
+    <button onclick="submitForm()" type="button">Submit</button>
+</form>
+
+<script>
+    async function submitForm() {
+      const name = document.getElementById('name').value;
+      const mobileNumber = document.getElementById('mobileNumber').value;
+
+      const data = {
+        name: name,
+        mobileNumber: mobileNumber
+      };
+
+      try {
+        const response = await fetch('http://localhost:8085/create-student', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const result = await response.json(); // Assuming the response is JSON
+        console.log('Form submission successful:', result);
+        // Handle the response as needed
+      } catch (error) {
+        console.error('Error during form submission:', error);
+        // Handle errors
+      }
+    }
+</script>
+
+</body>
+</html>
