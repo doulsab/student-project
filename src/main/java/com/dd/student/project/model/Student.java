@@ -1,18 +1,22 @@
 package com.dd.student.project.model;
 
 import jakarta.validation.constraints.NotEmpty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table("STUDENT")
 public class Student {
+    @Id
     private Integer id;
     @NotEmpty
     private String name;
     @NotEmpty
-    private String mobileNumber;
+    private String mobile;
 
-    public Student(Integer id, String name, String mobileNumber) {
+    public Student(Integer id, String name, String mobile) {
         this.id = id;
         this.name = name;
-        this.mobileNumber = mobileNumber;
+        this.mobile = mobile;
     }
 
     public Student() {
@@ -34,12 +38,12 @@ public class Student {
         this.name = name;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     @Override
@@ -47,7 +51,7 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", mobileNumber='" + mobileNumber + '\'' +
+                ", mobileNumber='" + mobile + '\'' +
                 '}';
     }
 }
